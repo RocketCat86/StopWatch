@@ -15,6 +15,10 @@ public class StopWatchActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(savedInstanceState != null){
+            seconds = savedInstanceState.getInt("seconds");
+            running = savedInstanceState.getBoolean("running");
+        }
         setContentView(R.layout.activity_stop_watch);
         runTime();
     }
@@ -49,6 +53,11 @@ public class StopWatchActivity extends Activity {
                 handler.postDelayed(this,1000);
             }
         });
+    }
+
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        savedInstanceState.putInt("seconds",seconds);
+        savedInstanceState.putBoolean("running",running);
     }
 }
 
